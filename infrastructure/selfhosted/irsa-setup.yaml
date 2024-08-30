@@ -1,0 +1,11 @@
+apiVersion: irsa-manager.kkb0318.github.io/v1alpha1
+kind: IRSASetup
+metadata:
+  name: irsa-init
+  namespace: irsa-manager-system
+spec:
+  cleanup: true
+  discovery:
+    s3:
+      region: <your region>
+      bucketName: <bucket name>

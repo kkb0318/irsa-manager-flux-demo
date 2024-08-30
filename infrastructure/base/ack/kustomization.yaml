@@ -1,0 +1,4 @@
+resources:
+  - s3.yaml
+  - lambda.yaml
+  - ecr.yaml

@@ -1,0 +1,3 @@
+resources:
+ - irsa-setup.yaml
+ - ../base

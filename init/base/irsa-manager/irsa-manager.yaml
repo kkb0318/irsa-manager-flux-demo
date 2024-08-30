@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: irsa-manager-controller
+  namespace: irsa-manager-system
+spec:
+  releaseName: irsa-manager
+  chart:
+    spec:
+      chart: irsa-manager
+      version: 0.3.x
+      sourceRef:
+        kind: HelmRepository
+        name: irsa-manager
+        namespace: flux-system
+  interval: 10m0s
+  values:
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: irsa-manager
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: https://kkb0318.github.io/irsa-manager

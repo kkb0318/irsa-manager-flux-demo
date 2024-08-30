@@ -1,0 +1,5 @@
+resources:
+  # - s3.yaml
+  # - ecr.yaml
+  - empty.yaml
+namespace: ack-system

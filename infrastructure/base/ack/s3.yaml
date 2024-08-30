@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ack-s3-controller
+  namespace: ack-system
+spec:
+  releaseName: s3-chart
+  chart:
+    spec:
+      chart: s3-chart
+      version: 1.0.x
+      sourceRef:
+        kind: HelmRepository
+        name: ack
+        namespace: flux-system
+  interval: 10m0s
+  values:
+    serviceAccount:
+      create: false
+      name: ack-s3-controller
+    aws:
+      region: ap-northeast-1
+---
+apiVersion: irsa-manager.kkb0318.github.io/v1alpha1
+kind: IRSA
+metadata:
+  name: irsa-s3
+  namespace: ack-system
+spec:
+  cleanup: true
+  serviceAccount:
+    name: ack-s3-controller
+    namespaces:
+      - ack-system
+  iamRole:
+    name: ack-s3-controller-role
+  iamPolicies:
+    - AmazonS3FullAccess
